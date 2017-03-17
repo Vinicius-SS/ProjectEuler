@@ -4,11 +4,13 @@
 --1, 2, 3, 5, 8, 13, 21, 34, 55, 89, ...
 --By considering the terms in the Fibonacci sequence whose values do not exceed four million, find the sum of the even-valued terms.
 
-
 prob2list::[Int]->[Int]
-prob2list xs 
+prob2list xs --generates a list with all the Fibonacci numbers up to 4 million starting from 0 and 1 (or 1 and 1, anything works)
   | last(xs)+(last.init) xs < 4000000 = prob2list (xs++[last(xs)+(last.init) xs])
   | otherwise = xs
 
-sumEven::[Int]->Int 
+sumEven::[Int]->Int --sums all even numbers from a list
 sumEven xs = ((foldr (+) 0).(filter (\x -> mod x 2 == 0))) xs
+
+--using the program:
+--sumEven (prob2list [0,1])
